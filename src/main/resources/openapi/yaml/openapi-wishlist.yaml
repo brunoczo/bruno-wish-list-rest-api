@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: Jaya - Bruno Oliveira
+  description: API do serviço de Wishlist
+  contact:
+    email: brunoczo@hotmail.com
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080/api/v1
+tags:
+  - name: wishlist
+    description: Serviço de Lista de desejos
+
+paths:
+  /wishlist/{userId}:
+    get:
+      tags:
+        - wishlist
+      summary: Busca wishlist
+      description: Returns lista de produtos
+      operationId: getWishListByUsuarioId
+      parameters:
+        - name: userId
+          in: path
+          description: ID do usuário
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Consulta realizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishList'
+        '404':
+          description: Nenhuma lista de dados encontrada
+        '501':
+          description: Erro ao executar serviço
+    post:
+      tags:
+        - wishlist
+      summary: Faz o cadastro de um Prodto
+      description: ''
+      operationId: postProduto
+      parameters:
+        - name: userId
+          in: path
+          description: ID do usuário
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Novo produto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto' 
+      responses:
+        '200':
+          description: Produto ja cadastrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        '201':
+          description: Produto criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'    
+        '422':
+          description: O produto não pode ser salvo, limite de produto por cliente já alcançado
+        '501':
+          description: Erro ao executar serviço
+
+
+  /wishlist/{userId}/{produtoId}:
+    get:
+      tags:
+        - wishlist
+      summary: Busca um Produto
+      description: Retorna um produto
+      operationId: getWishListByUsuarioIdAndProdutoId
+      parameters:
+        - name: userId
+          in: path
+          description: ID do usuário
+          required: true
+          schema:
+            type: string
+        - name: produtoId
+          in: path
+          description: ID do produto
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Consulta realizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'          
+        '404':
+          description: Produto ou usuário não encontrado
+        '501':
+          description: Erro ao executar serviço
+
+ 
+    delete:
+      tags:
+        - wishlist
+      summary: Remove um produto
+      description: Remove um produto
+      operationId: deleteProduto
+      parameters:
+        - name: userId
+          in: path
+          description: ID do usuário
+          required: true
+          schema:
+            type: string
+        - name: produtoId
+          in: path
+          description: ID do produto
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Produto removido com sucesso
+        '404':
+          description: Produto ou usuário não encontrado
+        '501':
+          description: Erro ao executar serviço
+
+components:
+  schemas:
+    WishList:
+      type: object
+      properties:
+        usuarioId:
+          type: string
+          example: "3"
+        listProdutos:
+          type: "array"
+          items: 
+            $ref: '#/components/schemas/Produto'          
+    Produto:
+      type: object
+      properties:
+        produtoId:
+          type: string
+          example: "10"
+        nome:
+          type: string
+          example: "Produto"
+
+
+
+ 
