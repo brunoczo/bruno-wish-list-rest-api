@@ -28,7 +28,7 @@ import java.util.Date;
         super.setUp(CucumberTest.class, "setUp", "target/generated-snippets/contacts");
 
     }
-        private WebTestClient.ResponseSpec exchange;
+    private WebTestClient.ResponseSpec exchange;
 
     WishListDTO wishListDTO = null;
     private static final Logger LOGGER = LoggerFactory.getLogger(WishListRestApiApplicationTests.class);
