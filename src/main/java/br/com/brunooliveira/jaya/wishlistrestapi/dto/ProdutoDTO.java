@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * ProdutoDTO
  */
-@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor
+@lombok.Builder @lombok.NoArgsConstructor
 @Data
 public class ProdutoDTO   {
 
@@ -19,6 +19,11 @@ public class ProdutoDTO   {
 
 
   private String nome;
+
+  public ProdutoDTO(String produtoId, String nome) {
+    this.produtoId = produtoId;
+    this.nome = nome;
+  }
 
   @Override
   public boolean equals(Object o) {

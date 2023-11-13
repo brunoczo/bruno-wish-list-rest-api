@@ -135,7 +135,7 @@ public class WishlistServiceImpl implements WishlistService {
             if(wl.getListProdutos().contains(produtoDTO)){
                 return  Mono.just(new ResponseEntity<>(produtoDTO,HttpStatus.OK));
             }
-            if(wl.getListProdutos().size() > MAX_PRODUTOS ){
+            if(wl.getListProdutos().size() >= MAX_PRODUTOS ){
 
                 return  Mono.just(new ResponseEntity<>(produtoDTO,HttpStatus.UNPROCESSABLE_ENTITY));
             }

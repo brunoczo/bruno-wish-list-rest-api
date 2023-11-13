@@ -1,14 +1,17 @@
 package br.com.brunooliveira.jaya.wishlistrestapi;
 
+import br.com.brunooliveira.jaya.wishlistrestapi.dto.ProdutoDTO;
 import br.com.brunooliveira.jaya.wishlistrestapi.dto.WishListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.restdocs.ManualRestDocumentation;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -19,6 +22,8 @@ public class WishListIntegrationTest {
     @Autowired
     private ApplicationContext applicationContext;
     WebTestClient webTestClient;
+    @Autowired
+    private WebClient webClient;
 
     ManualRestDocumentation manualRestDocumentation;
 
@@ -33,11 +38,44 @@ public class WishListIntegrationTest {
                 .build();
     }
 
-    Mono<WishListDTO> getWishList() throws Exception {
-        return WebClient.create().get()
-                .uri("/wishlist/")
+    Mono<WishListDTO> getWishList(String userId ) throws Exception {
+
+        return webClient.get()
+                .uri("/wishlist/"+userId)
                 .retrieve()
+
                 .bodyToMono(WishListDTO.class);
+    }
+
+    Mono<ProdutoDTO> getProduct(String userId , String produtoId) throws Exception {
+
+        return webClient.get()
+                .uri("/wishlist/"+userId+"/"+produtoId)
+                .retrieve()
+
+                .bodyToMono(ProdutoDTO.class);
+    }
+
+    Mono<Void> deleteProduct(String userId , String produtoId) throws Exception {
+
+        return webClient.delete()
+                .uri("/wishlist/"+userId+"/"+produtoId)
+                .retrieve()
+
+                .bodyToMono(Void.class);
+    }
+
+
+    Mono<ProdutoDTO> cadastroProduto(String userId , String produtoId, String produtoNome ) throws Exception {
+
+        ProdutoDTO requestBody = new ProdutoDTO(produtoId,produtoNome);
+
+        return webClient.post()
+                .uri("/wishlist/"+userId)
+                .bodyValue(requestBody)
+                .retrieve()
+
+                .bodyToMono(ProdutoDTO.class);
     }
 
 
