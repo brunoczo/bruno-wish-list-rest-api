@@ -9,6 +9,8 @@
         * Arquivo local: src/main/resources/openapi/yaml/openapi-wishlist.yaml
         * Comando gerar codigo:  mvn clean compile
 
+* **IDE utilizada**
+  * Intellij
 
 * **Spring boot com WebFlux**
     * Programação reativa.
@@ -40,7 +42,8 @@
       * minikube service  mongo-db-svc
         Liberar acesso local ao redis
 
-* *BDD*
+* **BDD**
   * Executar teste: Cucumber java + webclient
-  * Criar testes: intellij Gherkin
+  * Criar testes: Intellij Gherkin
+    * Source: src/test/resources/wishlistservice.feature
 
