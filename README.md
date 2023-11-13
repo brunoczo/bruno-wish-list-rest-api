@@ -3,7 +3,7 @@
 
 ## Tecnologias utilizadas:
 * **Criação da Documentação da API**
-    * Desenho da api acriado antes da implementação - Facilita o entedimento e atimiza o tempo de desenvolvimento  visto que pelo arquivo o codigo é gerado
+    * Desenho da api criada antes da implementação - Facilita o entedimento e atimiza o tempo de desenvolvimento  visto que pelo arquivo o codigo é gerado
         * https://editor.swagger.io/
         * https://github.com/swagger-api/swagger-codegen
         * Arquivo local: src/main/resources/openapi/yaml/openapi-wishlist.yaml
@@ -23,7 +23,7 @@
     * Escolha: Solução padrão de mercado
 
 * **Redis**
-    * Cache
+    * Solução de Cache
     * Escolha: Agilizar a consulta e a inserção de dados
 
 * **Mongo DB**
@@ -32,13 +32,15 @@
       mongosh "mongodb://192.168.49.2:31427/wishlist"
 
 * **Kubenerts**
-    * kubectl apply -f redis-config.yaml
-    * kubectl apply -f services.yaml
-    * minikube service   reddis-db-svc
-    * minikube service  mongo-db-svc
-      Liberar acesso local ao redis
+    * Agilidade na gestão da infra
+    * Comandos 
+      * kubectl apply -f redis-config.yaml
+      * kubectl apply -f services.yaml
+      * minikube service   reddis-db-svc
+      * minikube service  mongo-db-svc
+        Liberar acesso local ao redis
 
-* **Puppet**
+* *BDD*
+  * Executar teste: Cucumber java + webclient
+  * Criar testes: intellij Gherkin
 
-* **Postman**
-    * Testes continuos
