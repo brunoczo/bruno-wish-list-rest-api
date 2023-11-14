@@ -1,4 +1,8 @@
+
 package br.com.brunooliveira.jaya.wishlistrestapi.service.impl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rabbitmq.client.Connection;
 import br.com.brunooliveira.jaya.wishlistrestapi.dto.ProdutoDTO;
 import br.com.brunooliveira.jaya.wishlistrestapi.dto.WishListDTO;
 import br.com.brunooliveira.jaya.wishlistrestapi.repositories.WishListReposirotiry;
@@ -13,10 +17,16 @@ import org.springframework.data.redis.core.ReactiveValueOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.SerializationUtils;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.rabbitmq.OutboundMessage;
+import reactor.rabbitmq.QueueSpecification;
+import reactor.rabbitmq.Sender;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.time.Duration;
 
 @Component
@@ -33,10 +43,16 @@ public class WishlistServiceImpl implements WishlistService {
     private ReactiveValueOperations<String, WishListDTO> reactiveValueOps;
     @Autowired
     WishListReposirotiry wishListReposirotiryy;
+
+    @Autowired
+    SenderMessage senderMessage;
+
     @PostConstruct
     public void setup() {
         reactiveValueOps = redisTemplate.opsForValue();
     }
+
+
 
      public Mono<ResponseEntity<Void>> deleteProduto(String requestId,String userId, String produtoId,  ServerWebExchange exchange) {
         return buscaWishListByID( requestId, userId)
@@ -103,6 +119,9 @@ public class WishlistServiceImpl implements WishlistService {
     public Mono<WishListDTO> saveWishList(String requestId ,  WishListDTO wl){
         return reactiveValueOps.set(wl.getUsuarioId(),wl, TTL_DAYS )
             .flatMap((status) ->{
+                LOGGER.info("[{}] saveWishList SENDINt TO queue {} ",requestId,status);
+                senderMessage.sendToQueue(wl);
+
                 LOGGER.info("[{}] saveWishList salvo {} ",requestId,status);
                 return wishListReposirotiryy.save(wl)
                     .map(wlMongo -> wlMongo);
@@ -110,6 +129,8 @@ public class WishlistServiceImpl implements WishlistService {
         });
 
     }
+
+
  public  Mono<ProdutoDTO> buscaProduto(String requestId , WishListDTO wl, String produtoId){
      LOGGER.info("[{}] buscaProduto buscando produto por Id. wl: {} produdtoId: {}",requestId, wl, produtoId);
      ProdutoDTO produtoDTO = wl.getListProdutos()

@@ -23,3 +23,23 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-s
+spec:
+  type: NodePort
+  selector:
+    name: rabbitmq-d
+  ports:
+    - name: http
+      protocol: TCP
+      port: 15672
+      targetPort: 15672
+    - name: amqp
+      protocol: TCP
+      port: 5672
+      targetPort: 5672

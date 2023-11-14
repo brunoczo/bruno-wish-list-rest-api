@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-d
+  labels:
+      app: rabbitmq-d
+spec:
+  selector:
+    matchLabels:
+      app: rabbitmq-d
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-d
+    spec:
+      #  serviceAccountName: rabbitmq
+      terminationGracePeriodSeconds: 10
+      nodeSelector:
+        # Use Linux nodes in a mixed OS kubernetes cluster.
+        # Learn more at https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/#kubernetes-io-os
+        kubernetes.io/os: linux
+      containers:
+        - name: rabbitmq-k8s
+          image: rabbitmq:3.8
+          # Learn more about what ports various protocols use
+          # at https://www.rabbitmq.com/networking.html#ports
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 15672
+            - name: amqp
+              protocol: TCP
+              containerPort: 5672

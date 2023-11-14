@@ -35,12 +35,17 @@
 
 * **Kubenerts**
     * Agilidade na gestão da infra
+    * Pasta dos deployments:
+      * k8s/
     * Comandos 
       * kubectl apply -f redis-config.yaml
       * kubectl apply -f services.yaml
       * minikube service   reddis-db-svc
       * minikube service  mongo-db-svc
         Liberar acesso local ao redis
+      * Rabbitmq:
+        * https://www.rabbitmq.com/kubernetes/operator/using-operator.html
+        * kubectl expose deployment rabbitmq-d --type=NodePort
 
 * **BDD**
   * Executar teste: Cucumber java + webclient
