@@ -3,6 +3,7 @@
 
 ## Tecnologias utilizadas:
 * **Criação da Documentação da API**
+    * Arquitetura Macro: docs/arquitetura-macro.png
     * Desenho da api criada antes da implementação - Facilita o entedimento e atimiza o tempo de desenvolvimento  visto que pelo arquivo o codigo é gerado
         * https://editor.swagger.io/
         * https://github.com/swagger-api/swagger-codegen
@@ -21,7 +22,7 @@
         * Lombok
 
 * **ReabbitMQ**
-    * Solução de fila para processar as inserções no MongoDb para não deixar a inserção de dados influenciar na aplicação
+    * Solução de fila para processar as inserções no MongoDb
     * Escolha: Solução padrão de mercado
 
 * **Redis**
