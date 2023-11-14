@@ -2,7 +2,7 @@
 
 
 ## Tecnologias utilizadas:
-![Alt text](docs/arquitetura-macro.png?raw=true "Title")
+![Alt text](docs/arquitetura_macro.png?raw=true "Title")
 * **Criação da Documentação da API**
     * Arquitetura Macro: docs/arquitetura-macro.png
     * Desenho da api criada antes da implementação - Facilita o entedimento e atimiza o tempo de desenvolvimento  visto que pelo arquivo o codigo é gerado
