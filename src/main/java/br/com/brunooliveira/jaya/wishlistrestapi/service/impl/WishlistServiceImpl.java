@@ -118,13 +118,12 @@ public class WishlistServiceImpl implements WishlistService {
 
     public Mono<WishListDTO> saveWishList(String requestId ,  WishListDTO wl){
         return reactiveValueOps.set(wl.getUsuarioId(),wl, TTL_DAYS )
-            .flatMap((status) ->{
+            .map((status) ->{
                 LOGGER.info("[{}] saveWishList SENDINt TO queue {} ",requestId,status);
                 senderMessage.sendToQueue(wl);
 
                 LOGGER.info("[{}] saveWishList salvo {} ",requestId,status);
-                return wishListReposirotiryy.save(wl)
-                    .map(wlMongo -> wlMongo);
+                return wl;
 
         });
 

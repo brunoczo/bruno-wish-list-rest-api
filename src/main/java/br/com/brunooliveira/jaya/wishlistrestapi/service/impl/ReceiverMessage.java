@@ -19,9 +19,9 @@ import reactor.rabbitmq.Receiver;
 import org.apache.commons.lang3.SerializationUtils;
 import javax.annotation.PostConstruct;
 
-@Service
+//@Service
 public class ReceiverMessage {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReceiverMessage.class);
+   /* private static final Logger LOGGER = LoggerFactory.getLogger(ReceiverMessage.class);
     //@Value("${wishlist.queue}")
     private static  String QUEUE = "wishListqueue";
 
@@ -30,10 +30,10 @@ public class ReceiverMessage {
     WishListReposirotiry wishListReposirotiryy;
     @Autowired
     Receiver receiver;
-    @PostConstruct
-    private void init()  {
-        consume();
-    }
+    //@PostConstruct
+    //private void init()  {
+    //    consume();
+    //}
 
     public Disposable consume() {
 
@@ -52,6 +52,6 @@ public class ReceiverMessage {
                 e.printStackTrace();
             }
         });
-    }
+    }*/
 
 }
