@@ -2,6 +2,7 @@ package br.com.brunooliveira.jaya.wishlistrestapi.configuration;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 import reactor.rabbitmq.*;
 
+import javax.annotation.PreDestroy;
 
 
 @Configuration
@@ -50,6 +52,14 @@ public class RabbitConfig {
     @Bean
     Receiver receiver(ReceiverOptions receiverOptions) {
         return RabbitFlux.createReceiver(receiverOptions);
+    }
+
+    @Autowired
+    private Mono<Connection> connectionMono;
+
+    @PreDestroy
+    public void close() throws Exception {
+        connectionMono.block().close();
     }
 
 }

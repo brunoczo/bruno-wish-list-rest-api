@@ -17,16 +17,12 @@ public class WishListRestApiApplication {
 		SpringApplication.run(WishListRestApiApplication.class, args);
 	}
 
-	@Autowired
-	private Mono<Connection> connectionMono;
+
 	@Bean
 	WebClient getWebClient() {
 		return WebClient.create("http://localhost:8080/");
 	}
 
-	@PreDestroy
-	public void close() throws Exception {
-		connectionMono.block().close();
-	}
+
 
 }
