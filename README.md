@@ -1,5 +1,12 @@
 # Serviço Wishlist
 
+Este é o projeto principal da solução desenvolvida. 
+
+* Projeto que faz parte da solução:
+  * https://github.com/brunoczo/bruno-wish-list-rest-api-receiver 
+  * Finalidade: receber os dados de uma fila s salvar no banco de dados.
+  * Escolha: retirar todos carga de escrita da aplicação principal.
+
 
 ## Tecnologias utilizadas:
 ![Alt text](docs/arquitetura_macro.png?raw=true "Title")
