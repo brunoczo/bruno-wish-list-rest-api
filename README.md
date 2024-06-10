@@ -1,30 +1,34 @@
-# Serviço Wishlist
 
-Este é o projeto principal da solução desenvolvida. 
+java-webflux-rabbit-mongo-redis-bdd-kubenerts
 
-* Projeto que faz parte da solução:
+
+# Wishlist Service
+
+This is the main project of the developed solution. 
+
+* Project that is part of the solution::
   * https://github.com/brunoczo/bruno-wish-list-rest-api-receiver 
-  * Finalidade: receber os dados de uma fila s salvar no banco de dados.
-  * Escolha: retirar todos carga de escrita da aplicação principal.
+  * Purpose: to receive data from a queue and save it in the database.
+  * Choice: to remove all write load from the main application.
 
 
-## Tecnologias utilizadas:
+## Technologies used:
 ![Alt text](docs/arquitetura_macro.png?raw=true "Title")
-* **Criação da Documentação da API**
-    * Arquitetura Macro: docs/arquitetura-macro.png
-    * Desenho da api criada antes da implementação - Facilita o entedimento e atimiza o tempo de desenvolvimento  visto que pelo arquivo o codigo é gerado
+* **API Documentation Creation**
+    * Macro Architecture: docs/arquitetura-macro.png
+    * API design created before implementation - Facilitates understanding and optimizes development time since the code is generated from the file
         * https://editor.swagger.io/
         * https://github.com/swagger-api/swagger-codegen
-        * Arquivo local: src/main/resources/openapi/yaml/openapi-wishlist.yaml
-        * Comando gerar codigo:  mvn clean compile
+        * Local file: src/main/resources/openapi/yaml/openapi-wishlist.yaml
+        * Code generation command:  mvn clean compile
 
-* **IDE utilizada**
+* **IDE used**
   * Intellij
 
-* **Spring boot com WebFlux**
-    * Programação reativa.
-    * Escolha: programação reativa tem uma vantagem em ambientes com muitas requisições, porque conseguir lidar com um alto volume de requisições
-    * **Dependecias utilizadas**
+* **Spring boot with WebFlux**
+    * Reactive programming.
+    * Choice: reactive programming has an advantage in environments with many requests, because it can handle a high volume of requests
+    * **Dependencies used**
         * Swegger - OpiAPI
             * http://localhost:8080/api/webjars/swagger-ui/index.html
         * Lombok
