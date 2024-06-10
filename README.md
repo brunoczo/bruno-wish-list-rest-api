@@ -34,23 +34,23 @@ This is the main project of the developed solution.
         * Lombok
 
 * **ReabbitMQ**
-    * Solução de fila para processar as inserções no MongoDb
-    * Escolha: Solução padrão de mercado
+    * Queue solution to process insertions into MongoDb
+    * Choice: Market standard solution
 
 * **Redis**
-    * Solução de Cache
-    * Escolha: Agilizar a consulta e a inserção de dados
+    * Cache solution
+    * Choice: Speed up data query and insertion
 
 * **Mongo DB**
-    * Banco de dados para garantir as informações da whishlist.
-    * Escolha: banco com muito boa performance de  leitura, escalável
+    * Database to guarantee whishlist information.
+    * Choice: database with very good read performance, scalable
       mongosh "mongodb://192.168.49.2:31427/wishlist"
 
 * **Kubenerts**
-    * Agilidade na gestão da infra
-    * Pasta dos deployments:
+    * Agility in infrastructure management
+    * Deployments folder:
       * k8s/
-    * Comandos 
+    * Commands 
       * kubectl apply -f redis-config.yaml
       * kubectl apply -f services.yaml
       * minikube service   reddis-db-svc
@@ -61,7 +61,7 @@ This is the main project of the developed solution.
         * kubectl expose deployment rabbitmq-d --type=NodePort
 
 * **BDD**
-  * Executar teste: Cucumber java + webclient
-  * Criar testes: Intellij Gherkin
+  * Run test: Cucumber java + webclient
+  * Create tests: Intellij Gherkin
     * Source: src/test/resources/wishlistservice.feature
 
