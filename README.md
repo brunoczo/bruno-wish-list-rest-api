@@ -13,7 +13,7 @@ This is the main project of the developed solution.
 
 
 ## Technologies used:
-![Alt text](docs/arquitetura_macro.png?raw=true "Title")
+![Alt text](docs/macro_architecture.png?raw=true "Title")
 * **API Documentation Creation**
     * Macro Architecture: docs/arquitetura-macro.png
     * API design created before implementation - Facilitates understanding and optimizes development time since the code is generated from the file
